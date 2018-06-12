@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import axios from 'axios';
+import AlbumDetail from './AlbumDetail';
 
 // borrow bunch of functionality from the base component class
 // in a class need to define just one method - render method that returns
@@ -14,13 +15,23 @@ class AlbumList extends Component {
     .then(response => this.setState({ albums: response.data }));
   }
 
+  renderAlbums() {
+    //pass in an arrow function...called 5 times for each albums
+    //whatever is returned
+    //referencing javascript variable in curly braces.
+    return this.state.albums.map(album =>
+      //unique key,consistent across rerenders. (use an id if there is one)
+      <AlbumDetail key={album.title} album={album} />
+    );
+  }
+
   render() {
     console.log(this.state);
 
     return (
       <View>
-        <Text> Album List !!!! </Text>
-        </View>
+        {this.renderAlbums()}
+      </View>
       );
     }
   }
