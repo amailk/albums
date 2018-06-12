@@ -6,7 +6,8 @@ import AlbumList from './src/components/AlbumList';
 
 // create a component(produce some content that appear on the mobile device)
 const App = () => (
-  <View>
+  //expand component to fill entire area of the device, no bouncing
+  <View style={{ flex: 1 }}>
     <Header headerText={'Albums'} />
     <AlbumList />
   </View>
